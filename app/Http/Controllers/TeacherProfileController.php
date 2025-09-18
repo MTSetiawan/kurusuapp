@@ -24,9 +24,10 @@ class TeacherProfileController extends Controller
         $data['user_id'] = auth()->guard('web')->id();
 
         if ($request->hasFile('profile_image')) {
-            $data['profile_image_path'] = $request->file('profile_image')
-                ->store('profiles', 'public');
+            $path = $request->file('profile_image')->store('profiles', 'public');
+            $data['profile_image_path'] = $path;
         }
+        unset($data['profile_image']);
 
         $profile = TeacherProfile::create($data);
 
@@ -71,10 +72,10 @@ class TeacherProfileController extends Controller
             if ($profile->profile_image_path) {
                 Storage::disk('public')->delete($profile->profile_image_path);
             }
-            $data['profile_image_path'] = $request->file('profile_image')
-                ->store('profiles', 'public');
+            $path = $request->file('profile_image')->store('profiles', 'public');
+            $data['profile_image_path'] = $path;
         }
-
+        unset($data['profile_image']);
         $profile->update($data);
 
         return redirect()->route('teacher.dashboard')

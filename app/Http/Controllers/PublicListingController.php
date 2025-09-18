@@ -17,9 +17,10 @@ class PublicListingController extends Controller
     public function show($slug, Region $region)
     {
         $listing = Listing::with(['region', 'user.teacherProfile'])
-            ->where('slug', $slug)->where('region_id', $region->id)
-            ->where('status', 'active')->firstOrFail();
-
+            ->where('slug', $slug)
+            ->where('region_id', $region->id)
+            ->where('status', 'active')
+            ->firstOrFail();
         return view('listings.show', compact('listing'));
     }
 

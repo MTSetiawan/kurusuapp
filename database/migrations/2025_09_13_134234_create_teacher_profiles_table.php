@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->unique()->constrained()->cascadeOnDelete();
             $table->string('whatsapp_number')->nullable();
             $table->string('location')->nullable();
-            $table->string('bio')->nullable();
-            $table->string('profile_image');
+            $table->text('bio')->nullable();
+            $table->string('profile_image_path')->nullable();
             $table->timestamps();
         });
     }

@@ -21,9 +21,8 @@
         <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
             <a href="{{ route('landing') }}" class="font-bold">KursusApp</a>
             <div class="flex items-center gap-4 text-sm">
-                <a href="{{ route('catalog') }}" class="hover:underline">Semua Kursus</a>
                 @auth
-                    <a href="{{ route('teacher.profile.edit') }}" class="hover:underline">Profil Guru</a>
+                    <a href="{{ route('teacher.dashboard') }}" class="hover:underline">Profil Guru</a>
                     <a href="{{ route('listings.index') }}" class="hover:underline">Listing Saya</a>
                     <form action="{{ route('logout') }}" method="POST" class="inline">@csrf
                         <button class="hover:underline">Logout</button>

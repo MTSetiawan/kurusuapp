@@ -45,6 +45,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('teacher.profile.edit', absolute: false));
+        return redirect(route('teacher.profile.store', absolute: false));
     }
 }

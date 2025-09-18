@@ -14,7 +14,7 @@ class TeacherProfile extends Model
         'whatsapp_number',
         'location',
         'bio',
-        'profile_image'
+        'profile_image_path'
     ];
 
     public function User()
