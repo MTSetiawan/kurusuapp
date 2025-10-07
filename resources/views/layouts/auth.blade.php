@@ -3,15 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ $title ?? 'LesPrivat.id' }}</title>
+  <title>{{ $title ?? 'Auth' }} | LesPrivat.id</title>
   @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
-<body>
-  <x-navbar />
-  <main class="min-h-screen">
+<body class="container" style="display:flex;min-height:100vh;align-items:center;justify-content:center">
+  <main class="card pad" style="width:100%;max-width:420px">
     @yield('content')
   </main>
-  <x-footer />
-  @stack('head')
 </body>
 </html>
