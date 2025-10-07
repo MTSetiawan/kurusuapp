@@ -4,5 +4,7 @@
     <div class="muted" style="font-size:12px">Current Plan</div>
     <div class="h2" style="margin:0">{{ $plan }} — {{ $used }}/{{ $limit }} listings used</div>
   </div>
-  <a class="btn primary" href="#upgrade">Upgrade</a>
+
+  {{-- was href="#upgrade" --}}
+  <button class="btn primary" type="button" data-open="upgrade-modal">Upgrade</button>
 </div>
