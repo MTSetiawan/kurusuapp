@@ -11,7 +11,10 @@ class PublicListingController extends Controller
     public function Landing()
     {
         $listing = Listing::with('region')->where('status', 'active')->latest()->take(6)->get();
-        return view('landing', ['listings' => $listing]);
+        return response()->json([
+            'status' => 'success',
+            'data' => $listing
+        ]);
     }
 
     public function show($slug, Region $region)
@@ -26,12 +29,12 @@ class PublicListingController extends Controller
 
     public function catalog(Request $request)
     {
-        $region = Region::where('type', 'kecamatan')->oderBy('name')->get();
+        $region = Region::where('type', 'kecamatan')->orderBy('name')->get();
 
         $items = Listing::with('region')
             ->where('status', 'active')
             ->when($request->filled('region'), fn($q) => $q->where('region_id', $request->region))
-            ->when($request->filled('category'), fn($q) => $q->where('category', 'like', '%' . $request->category . '%'))
+            ->when($request->filled('title'), fn($q) => $q->where('title', 'like', '%' . $request->title . '%'))
             ->latest()
             ->paginate(12)
             ->withQueryString();
@@ -39,7 +42,7 @@ class PublicListingController extends Controller
         return view('catalog', [
             'items'   => $items,
             'regions' => $region,
-            'filters' => $request->only('region', 'category'),
+            'filters' => $request->only('region', 'title'),
         ]);
     }
 }
